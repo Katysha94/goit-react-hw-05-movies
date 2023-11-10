@@ -1,4 +1,4 @@
-import css from './Home.module.css';
+// import css from './Home.module.css';
 import { useEffect, useState } from 'react';
 import { getTrendingMovies } from 'components/helpers/Api-service'
 import { MoviesList } from 'components/MoviesList/MoviesList';

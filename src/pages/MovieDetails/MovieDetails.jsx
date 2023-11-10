@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import css from './MovieDetails.module.css'
+// import css from './MovieDetails.module.css'
 import { useParams } from "react-router-dom";
 import { getMovieDetails } from 'components/helpers/Api-service';
 import {MovieInfo} from 'components/MovieInfo/MovieInfo'

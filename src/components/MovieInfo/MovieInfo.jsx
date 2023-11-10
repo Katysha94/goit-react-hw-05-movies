@@ -1,4 +1,4 @@
-import css from './MovieInfo.module.css'
+// import css from './MovieInfo.module.css'
 
 export const MovieInfo = ({ poster_path, title, overview, genres, vote_average, release_date }) => {
     

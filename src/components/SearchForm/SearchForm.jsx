@@ -1,4 +1,4 @@
-import css from './SearchForm.module.css';
+// import css from './SearchForm.module.css';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import { getMovie } from '../helpers/Api-service';

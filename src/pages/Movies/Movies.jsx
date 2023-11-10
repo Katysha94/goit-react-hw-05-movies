@@ -1,4 +1,4 @@
-import css from './Movies.module.css';
+// import css from './Movies.module.css';
 import {SearchForm} from 'components/SearchForm/SearchForm'
 
 export const Movies = () => {

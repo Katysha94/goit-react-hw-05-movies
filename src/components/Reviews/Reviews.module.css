@@ -8,3 +8,9 @@
 .reviewsListItem {
     list-style: none;
 }
+
+.infoMsg {
+    font-size: 20px;
+    margin-left: 25px;
+    color: red;
+}

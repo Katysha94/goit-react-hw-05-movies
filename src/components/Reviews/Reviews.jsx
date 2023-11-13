@@ -24,7 +24,8 @@ const Reviews = () => {
     }, [movieId])
 
     return (
-        <ul className={css.reviewsList}>
+        reviews.length !== 0 ?
+            (<ul className={css.reviewsList}>
             {reviews.map(({ id, author, content, created_at, }) => (
                 <li className={css.reviewsListItem}
                     key={id}>
@@ -33,7 +34,8 @@ const Reviews = () => {
                     <p>{content}</p>
                 </li>
             ))}
-      </ul>  
+      </ul>  ) : <p className={css.infoMsg}>We have no reviews for this film.</p>
+        
     )
 }
 

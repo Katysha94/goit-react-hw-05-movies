@@ -1,13 +1,10 @@
-import { useState, useEffect, useRef, Suspense, lazy } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
 import css from './MovieDetails.module.css'
-import { useParams, Link, Route, Routes, useLocation } from "react-router-dom";
+import { useParams, Link, useLocation, Outlet } from "react-router-dom";
 import { getMovieDetails } from 'components/helpers/Api-service';
 import { MovieInfo } from 'components/MovieInfo/MovieInfo';
 import { Loader } from 'components/Loader/Loader';
 import { LiaArrowLeftSolid } from "react-icons/lia";
-
-const CastList = lazy(() => import('components/CastList/CastList'));
-const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 
  const MovieDetails = () => {
@@ -53,11 +50,8 @@ const Reviews = lazy(() => import('components/Reviews/Reviews'));
                 <Link className={css.addInfoItem} to="cast">Cast</Link>
                 <Link className={css.addInfoItem} to="reviews">Reviews</Link>
             </div>
-            <Suspense fallback={<Loader/>}>
-              <Routes>
-                <Route path="cast" element={<CastList />}></Route>
-                <Route path="reviews" element={<Reviews />}></Route>
-            </Routes>  
+            <Suspense fallback={<Loader />}>
+                <Outlet/>
             </Suspense>
             
         

@@ -22,8 +22,9 @@ import { movieCast } from 'components/helpers/Api-service';
         getCast()
     },[movieId])
 
-    return (
-        <ul className={css.castList}>
+     return (
+         cast.length !== 0 ? 
+             (<ul className={css.castList}>
             {cast.map(({ id, name, profile_path, character }) => (
                 <li className={css.castListItem}
                     key={id}>
@@ -32,7 +33,8 @@ import { movieCast } from 'components/helpers/Api-service';
                     <p>{character}</p>
                 </li>
             ))}
-        </ul>
+        </ul>) : <p className={css.infoMsg}>We have no information about the cast of this film.</p>
+        
     );
  }
 

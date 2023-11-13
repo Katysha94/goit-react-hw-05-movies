@@ -1,0 +1,42 @@
+.backBtn {
+    display: inline-flex;
+    width: 90px;
+    padding: 5px 15px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 5px;
+}
+
+.backBtn:hover,
+.backBtn:focus {
+    background-color: orangered;
+    color: #ffffff;
+}
+
+.addInfo {
+    margin-left: 25px;
+}
+
+.addInfoItem {
+    margin-left: 25px;
+    text-decoration: none;
+    color: black;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-weight: 300;
+    font-size: 30px;
+    margin-right: 25px;
+    transition: background-color 0.5s ease;
+}
+
+.addInfoItem:hover,
+.addInfoItem:focus {
+    color: white;
+    background-color: orangered;
+}
+
+

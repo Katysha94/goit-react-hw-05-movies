@@ -1,67 +1,71 @@
-// import css from './SearchForm.module.css';
+import css from './SearchForm.module.css';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import { getMovie } from '../helpers/Api-service';
 import { MoviesList } from '../MoviesList/MoviesList';
 import Notiflix from 'notiflix';
+import { Loader } from 'components/Loader/Loader';
 
 export const SearchForm = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const movieTitle = searchParams.get('query');
-    const [value, setValue] = useState('');
+    const queryValue = searchParams.get('query');
     const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        if (!queryValue) return;
+
         const loadMovie = async () => {
     
             try {
-                const response = await getMovie(movieTitle);
-                if (response.length === 0) {
-                    return Notiflix.Notify.failure('Sorry, no matches found...')
-                } else {
-                    setMovies([...response]);
+                setIsLoading(true)
+                const response = await getMovie(queryValue);
+                if (response.length === 0)Notiflix.Notify.failure('Sorry, no matches found...')
+               setMovies([...response]);
                     
-                }
+               
             }
             catch (error) {
-                console.log(error)
-            }   
+            setError(error.message)
+            } finally {
+                setIsLoading(false)
+            }
         }
-        if (value !== '') {
-            loadMovie()
-        }
+    
+        loadMovie()
         
-    },[movieTitle])
+    },[queryValue])
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        if (value.trim() !== '') {
-          setSearchParams({query: value})   
+        const value = evt.currentTarget.elements.searchKey.value;
+        if (value !== '') {
+            setSearchParams({query: value})
         } else {
             return Notiflix.Notify.failure("Enter movie title!")
-         }
-       
+        }
+   
     }
-
-    const handleInputChange = (evt) => {
-        setValue(evt.target.value);
-    }
-    
     return (
         <div>
-         <form onSubmit={handleSubmit}>
-            <input
+            <form
+                className={css.searchForm}
+                onSubmit={handleSubmit}>
+        <input
+            className={css.searchFormInput}
+            name="searchKey"
             type="text"
             autoComplete="off"
             autoFocus
-            placeholder="Enter movie title..."
-            value={value}
-            onChange={handleInputChange}    
+            placeholder="Enter movie title..."  
             />
-            <button type="submit">Search</button>
-        </form>
-        <MoviesList movies={movies}/>   
+            <button className={css.searchBtn} type="submit">Search</button>
+            </form>
+             {error !== null && <p>{error}</p>}
+            {isLoading && <Loader />}
+            <MoviesList movies={movies} />   
         </div>
         
     )

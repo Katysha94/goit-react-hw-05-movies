@@ -1,10 +1,12 @@
 // import css from './Movies.module.css';
 import {SearchForm} from 'components/SearchForm/SearchForm'
 
-export const Movies = () => {
+ const Movies = () => {
     return (
         <>
             <SearchForm />
         </>
     )
 }
+
+export default Movies;

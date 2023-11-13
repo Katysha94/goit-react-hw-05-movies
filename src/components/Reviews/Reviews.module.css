@@ -1,0 +1,10 @@
+.reviewsList {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+}
+
+.reviewsListItem {
+    list-style: none;
+}

@@ -1,0 +1,26 @@
+.movieInfoContainer {
+    display: flex;
+    gap: 20px;
+    padding: 30px;  
+}
+
+.movieImg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+
+}
+
+.movieInfo {
+    display: flex;
+    flex-direction: column;
+}
+.genresList {
+display: flex;
+padding-inline-start: unset;
+gap: 10px;
+}
+
+.genresTitle {
+    list-style: none;
+}

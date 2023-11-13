@@ -1,8 +1,9 @@
+import css from './Reviews.module.css'
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { movieReviews } from 'components/helpers/Api-service';
 
-export const Reviews = () => {
+const Reviews = () => {
 
     const [reviews, setReviews] = useState([])
     const { movieId } = useParams()
@@ -12,7 +13,7 @@ export const Reviews = () => {
             try {
                 const response = await movieReviews(movieId)
                 setReviews(response)
-                console.log(response)
+    
             }catch (error) {
             console.error(error);
             }
@@ -23,9 +24,10 @@ export const Reviews = () => {
     }, [movieId])
 
     return (
-        <ul>
+        <ul className={css.reviewsList}>
             {reviews.map(({ id, author, content, created_at, }) => (
-                <li key={id}>
+                <li className={css.reviewsListItem}
+                    key={id}>
                     <h2>{author}</h2>
                     <h3>{new Date(created_at).toLocaleString()}</h3>
                     <p>{content}</p>
@@ -34,3 +36,5 @@ export const Reviews = () => {
       </ul>  
     )
 }
+
+export default Reviews;

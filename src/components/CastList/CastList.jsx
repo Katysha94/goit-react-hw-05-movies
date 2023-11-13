@@ -1,8 +1,9 @@
+import css from './CastList.module.css'
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { movieCast } from 'components/helpers/Api-service';
 
-export const CastList = () => {
+ const CastList = () => {
     const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=200x400'; 
 
     const [cast, setCast] = useState([]);
@@ -22,9 +23,10 @@ export const CastList = () => {
     },[movieId])
 
     return (
-        <ul>
+        <ul className={css.castList}>
             {cast.map(({ id, name, profile_path, character }) => (
-                <li key={id}>
+                <li className={css.castListItem}
+                    key={id}>
                     <img src={profile_path ? `https://image.tmdb.org/t/p/w200/${profile_path}` : defaultImg} alt={name} />  
                     <h2>{name}</h2>
                     <p>{character}</p>
@@ -32,4 +34,6 @@ export const CastList = () => {
             ))}
         </ul>
     );
-}
+ }
+
+export default CastList;

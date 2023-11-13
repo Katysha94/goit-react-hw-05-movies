@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import { getMovie } from '../helpers/Api-service';
-import {MoviesList} from '../MoviesList/MoviesList'
+import { MoviesList } from '../MoviesList/MoviesList';
+import Notiflix from 'notiflix';
 
 export const SearchForm = () => {
 
@@ -17,16 +18,20 @@ export const SearchForm = () => {
             try {
                 const response = await getMovie(movieTitle);
                 if (response.length === 0) {
-                    return alert('Sorry, no matches found...')
+                    return Notiflix.Notify.failure('Sorry, no matches found...')
                 } else {
                     setMovies([...response]);
+                    
                 }
             }
             catch (error) {
                 console.log(error)
             }   
         }
-        loadMovie()
+        if (value !== '') {
+            loadMovie()
+        }
+        
     },[movieTitle])
 
     const handleSubmit = (evt) => {
@@ -34,7 +39,7 @@ export const SearchForm = () => {
         if (value.trim() !== '') {
           setSearchParams({query: value})   
         } else {
-            return alert("Enter movie title!")
+            return Notiflix.Notify.failure("Enter movie title!")
          }
        
     }

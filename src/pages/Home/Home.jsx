@@ -5,6 +5,7 @@ import { MoviesList } from 'components/MoviesList/MoviesList';
 
 
 
+
 export const Home = () => {
 
     const [movies, setMovies] = useState([]);
